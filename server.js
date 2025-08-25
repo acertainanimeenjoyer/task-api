@@ -11,7 +11,10 @@ const messagesApi = require('./routes/messages');
 
 const socketAuth = require('./middleware/socketAuth');
 const Message = require('./models/Message');
-
+const productRoutes = require('./routes/products');
+const categoryRoutes = require('./routes/categories');
+const cartRoutes = require('./routes/cart');
+const orderRoutes = require('./routes/orders');
 const app = express();
 
 // HTTP middleware
@@ -25,7 +28,10 @@ app.use(express.json());
 app.use('/api/tasks', taskRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messagesApi);
-
+app.use('/api/categories', categoryRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 // Create HTTP server + Socket.io
 const server = http.createServer(app);
 const io = new Server(server, {
